@@ -35,7 +35,7 @@ data "aws_ami" "ubuntu" {
 resource "aws_instance" "example" {
   ami                    = data.aws_ami.ubuntu.id
   instance_type          = "t2.micro"
-  vpc_security_group_ids = [aws_security_group.instance.id]
+  vpc_security_group_ids = [aws_security_group.sg_8080.id]
   user_data              = <<-EOF
               #!/bin/bash
               echo "Hello, World" > index.html
@@ -46,8 +46,8 @@ resource "aws_instance" "example" {
   }
 }
 
-resource "aws_security_group" "instance" {
-  name = "terraform-learn-state-sg"
+resource "aws_security_group" "sg_8080" {
+  name = "terraform-learn-state-sg-8080"
   ingress {
     from_port   = "8080"
     to_port     = "8080"
@@ -62,5 +62,5 @@ output "public_ip" {
 }
 
 output "security_group" {
-  value = aws_security_group.instance.id
+  value = aws_security_group.sg_8080.id
 }
