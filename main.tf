@@ -56,8 +56,11 @@ resource "aws_security_group" "instance" {
   }
 }
 
+output "public_ip" {
+  value       = aws_instance.example.public_ip
+  description = "The public IP of the web server"
+}
 
 output "security_group" {
   value = aws_security_group.instance.id
-
 }
