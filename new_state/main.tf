@@ -54,6 +54,15 @@ resource "aws_instance" "example" {
   }
 }
 
+resource "aws_security_group" "instance" {
+  name = "terraform-learn-state-sg"
+  ingress {
+    from_port   = "8080"
+    to_port     = "8080"
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
 
 output "public_ip" {
   value       = aws_instance.example.public_ip
