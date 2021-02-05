@@ -64,3 +64,7 @@ output "public_ip" {
 output "security_group" {
   value = aws_security_group.sg_8080.id
 }
+
+output "instance_id" {
+  value = aws_instance.example.id
+}
