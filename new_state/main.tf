@@ -40,7 +40,7 @@ data "terraform_remote_state" "root" {
   }
 }
 
-resource "aws_instance" "example" {
+resource "aws_instance" "example_new" {
   ami                    = data.aws_ami.ubuntu.id
   instance_type          = "t2.micro"
   vpc_security_group_ids = [data.terraform_remote_state.root.outputs.security_group]
