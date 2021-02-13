@@ -56,7 +56,7 @@ resource "aws_instance" "example_new" {
 
 
 output "public_ip" {
-  value       = aws_instance.example.public_ip
+  value       = aws_instance.example_new.public_ip
   description = "The public IP of the web server"
 }
 
