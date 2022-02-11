@@ -5,7 +5,7 @@ terraform {
       version = ">= 3.24.1"
     }
   }
-  required_version = ">= 0.15.2"
+  required_version = ">= 1.1.5"
 }
 
 variable "region" {
