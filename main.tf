@@ -38,8 +38,11 @@ resource "aws_instance" "example" {
   vpc_security_group_ids = [aws_security_group.sg_8080.id]
   user_data              = <<-EOF
               #!/bin/bash
-              echo "Hello, World" > index.html
-              nohup busybox httpd -f -p 8080 &
+              apt-get update
+              apt-get install -y apache2
+              sed -i -e 's/80/8080/' /etc/apache2/ports.conf
+              echo "Hello World" > /var/www/html/index.html
+              systemctl restart apache2
               EOF
   tags = {
     Name = "terraform-learn-state-ec2"
@@ -54,8 +57,14 @@ resource "aws_security_group" "sg_8080" {
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
+  // required to update apt-get
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
 }
-
 
 output "instance_id" {
   value = aws_instance.example.id
