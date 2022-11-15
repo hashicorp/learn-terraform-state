@@ -1,3 +1,4 @@
 # Learn Terraform State Management
 
-This is a companion repository to the Terraform State Management tutorial. Follow along on [Learn](https://learn.hashicorp.com/tutorials/terraform/state-cli?in=terraform/state)
+This repo is a companion repo to the [Learn Terraform State Management](https://developer.hashicorp.com/terraform/tutorials/state/state-cli) tutorial.
+It contains Terraform configuration you can use to learn how to create an AWS instance and security group, examine a state file, and then manipulate resources to observe how vital state is to your Terraform operations.
