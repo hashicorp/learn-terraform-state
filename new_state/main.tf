@@ -1,19 +1,5 @@
-terraform {
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = ">= 5.8.0"
-    }
-  }
-  required_version = ">= 1.1.5"
-}
-
-variable "region" {
-  description = "The AWS region your resources will be deployed"
-}
-
 provider "aws" {
-  region = var.region
+  region = var.aws_region
 }
 
 data "aws_ami" "ubuntu" {
@@ -55,14 +41,4 @@ resource "aws_instance" "example_new" {
   tags = {
     Name = "terraform-learn-state-ec2"
   }
-}
-
-
-output "public_ip" {
-  value       = aws_instance.example_new.public_ip
-  description = "The public IP of the web server"
-}
-
-output "security_group" {
-  value = data.terraform_remote_state.root.outputs.security_group 
 }
